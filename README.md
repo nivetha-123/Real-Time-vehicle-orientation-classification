@@ -1,6 +1,5 @@
 Vehicle Orientation Classification
 
-Author: Nivetha Rajendran
 Model: EfficientNetB0 + TensorFlow Lite (pretrained on Imagenet)
 
 
