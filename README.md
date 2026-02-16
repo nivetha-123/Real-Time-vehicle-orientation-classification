@@ -38,21 +38,11 @@ dataset/
 
 Images were labeled based on dominant vehicle orientation.
 
-Rule Set for Dataset Preparation
-
-	- Some images contained multiple orientations (e.g., both frontright and rearright).
-To avoid ambiguity, such images were cropped into separate regions so that each cropped image represents a single dominant orientation.
-
-	- For EfficientNet and MobileNet models, a fixed input size is required.
-Therefore, all images were resized to a standard resolution of (224, 224) to ensure consistent training
-	
-
 Dataset was split into:
 - 70% training
 - 20% validation
 - 10% testing
 
-Due to time and computational constraints (CPU-based training), approximately 1000 images were used for training and validation. The complete dataset (4000 images) can be used in future training to further improve performance.
 -------------------------------------------------
 3. DATA AUGMENTATION AND PREPROCESSING
 -------------------------------------------------
@@ -108,26 +98,12 @@ Validation Accuracy: ~55%
 Test Accuracy: ~60–65%
 
 -------------------------------------------------
-6. MODEL EXPORT
--------------------------------------------------
-
-The trained model was converted to TensorFlow Lite using:
-
-TFLiteConverter.from_keras_model()
-
-Optimizations enabled:
-- Default graph optimizations
-
-Final model file:
-orientation_model.tflite
-
--------------------------------------------------
-7. INFERENCE PIPELINE
+6. INFERENCE PIPELINE
 -------------------------------------------------
 
 The file test_predict.py performs:
 
-1. Load TFLite model
+1. Load  model
 2. Resize image to 224x224
 3. Apply EfficientNet preprocessing
 4. Run inference
@@ -141,46 +117,6 @@ Output example:
 
 Prediction: frontleft
 Confidence: 0.8723
-
--------------------------------------------------
-8. FILES INCLUDED
--------------------------------------------------
-
-- train.py
-- convert_to_tflite.py
-- test_predict.py
-- orientation_model.tflite
-- readme.txt
-- requirements.txt
-
--------------------------------------------------------
-9. FUTURE IMPROVEMENTS & SUGGESTIONS FOR GOOD ACCURACY 
-------------------------------------------------------
-Handling Low-Quality Images
-
-In real-world scenarios, images may suffer from:
-
-Low brightness
-
-Motion blur
-
-Sensor noise
-
-Overexposure / underexposure
-
-Low resolution
-
-To improve robustness, the following techniques can be applied:
-
-Data Augmentation Enhancements:
-
-Random brightness adjustment
-
-Contrast modification
-
-Noise removal (Gaussian / Median filtering)
-
-
  
  						-------------------------------------------------
 								END OF DOCUMENT
